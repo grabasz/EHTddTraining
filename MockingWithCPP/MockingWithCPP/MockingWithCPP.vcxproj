@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6d8926fa-aacf-4171-aa89-8491ec2db1e0}</ProjectGuid>
+    <ProjectGuid>{fe31b045-856d-4b04-9497-bedcb41bf59e}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ConfigurationType>Application</ConfigurationType>
@@ -33,13 +33,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
-    <ClInclude Include="DatabaseConnection.h" />
+    <ClInclude Include="ClassWithDependency.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="WithVirtualMethod.h" />
+    <ClInclude Include="WithVirtualMock.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DatabaseConnection.cpp" />
-    <ClCompile Include="StringMatchers.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -71,7 +70,12 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Projects\Dojo\MockingWithCPP\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
