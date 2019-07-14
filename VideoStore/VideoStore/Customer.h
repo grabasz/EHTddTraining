@@ -10,7 +10,7 @@ public:
 	Customer();
 	explicit Customer(const std::string& name);
 
-	void addRental(const Rental& arg);
+	Customer& addRental(const Rental& arg);
 	std::string getName() const;
 	std::string statement();
 
@@ -26,8 +26,12 @@ inline Customer::
 Customer(const std::string& name)
 	: _name(name) {}
 
-inline void Customer::
-addRental(const Rental& arg) { _rentals.push_back(arg); }
+inline Customer& Customer::
+addRental(const Rental& arg)
+{
+	_rentals.push_back(arg);
+	return *this;
+}
 
 inline std::string Customer::
 getName() const { return _name; }
