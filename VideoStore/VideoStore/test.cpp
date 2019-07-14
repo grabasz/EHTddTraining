@@ -17,7 +17,7 @@ class CustomerTest : public testing::Test
 TEST_F(CustomerTest, TestCustomer)
 {
 	Customer* c = new Customer;
-ASSERT_NE(nullptr, c);
+	ASSERT_NE(nullptr, c);
 	delete c;
 }
 
@@ -36,12 +36,22 @@ TEST_F(CustomerTest, TestGetName)
 	ASSERT_EQ("David", c.getName());
 }
 
-//[Test]
-//public void TestGetName()
-//{
-//	Customer c = new Customer("David");
-//	Assert.AreEqual("David", c.getName());
-//}
+
+TEST_F(CustomerTest, StatementForRegularMovie)
+{
+	Movie movie1 = Movie("Gone with the Wind", Movie::REGULAR);
+	Rental rental1 = Rental(movie1, 3); // 3 day rental
+	Customer customer2 = Customer("Sallie");
+	customer2.addRental(rental1);
+
+	std::string expected = "Rental Record for Sallie\n"
+		"\tGone with the Wind\t3.5\n"
+		"Amount owed is 3.5\n"
+		"You earned 1 frequent renter points";
+	const std::string statement = customer2.statement();
+	ASSERT_EQ(expected, statement);
+}
+
 //[Test]
 //public void StatementForRegularMovie()
 //{
