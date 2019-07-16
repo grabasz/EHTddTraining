@@ -24,5 +24,6 @@
        * String Matchers
        * Number - Greater
        * _
-     * Typed tests <- not compiling
+     * Typed tests
+     * Value Parametrized <- not compiling
 
