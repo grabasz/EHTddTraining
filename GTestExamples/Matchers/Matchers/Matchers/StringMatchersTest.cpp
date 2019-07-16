@@ -10,7 +10,7 @@ using ::testing::HasSubstr;
 TEST(TestCaseName, ShouldMatchLetters) {
 	DatabaseConnectionMock databaseConnectionMock;
 	ClassWithConnectionToDB classWithConnection(databaseConnectionMock);
-	EXPECT_CALL(databaseConnectionMock, GetUserWithName(ContainsRegex("\\w.*"))/*MATCHER*/);
+	EXPECT_CALL(databaseConnectionMock, GetUserWithName(ContainsRegex("\\w.*"))/*word matcher*/);
 
 	/*Should pass*/
 	classWithConnection.PrintUserWithName("Bartek");
@@ -19,7 +19,7 @@ TEST(TestCaseName, ShouldMatchLetters) {
 TEST(TestCaseName, ShouldMatchWithIgnoringCase) {
 	DatabaseConnectionMock databaseConnectionMock;
 	ClassWithConnectionToDB classWithConnection(databaseConnectionMock);
-	EXPECT_CALL(databaseConnectionMock, GetUserWithName(StrCaseEq("bartek"))/*ALWAYS MATCHING*/);
+	EXPECT_CALL(databaseConnectionMock, GetUserWithName(StrCaseEq("bartek"))/*case insensitive matcher*/);
 
 	/*Should pass*/
 	classWithConnection.PrintUserWithName("Bartek");
@@ -29,7 +29,7 @@ TEST(TestCaseName, ShouldMatchWithIgnoringCase) {
 TEST(TestCaseName, ShouldMatchWithSubstring) {
 	DatabaseConnectionMock databaseConnectionMock;
 	ClassWithConnectionToDB classWithConnection(databaseConnectionMock);
-	EXPECT_CALL(databaseConnectionMock, GetUserWithName(HasSubstr("artek"))/*ALWAYS MATCHING*/);
+	EXPECT_CALL(databaseConnectionMock, GetUserWithName(HasSubstr("artek"))/*substring matcher*/);
 
 	/*Should pass*/
 	classWithConnection.PrintUserWithName("Bartek");

@@ -9,7 +9,7 @@ TEST(TestCaseName, ShouldFailFor9GreaterThan10) {
 	DatabaseConnectionMock databaseConnectionMock;
 	ClassWithConnectionToDB classWithConnection(databaseConnectionMock);
 	ON_CALL(databaseConnectionMock, GetUserWithId(_)).WillByDefault(testing::Return("User"));
-	EXPECT_CALL(databaseConnectionMock, GetUserWithId(Gt(10))/*MATCHER*/);
+	EXPECT_CALL(databaseConnectionMock, GetUserWithId(Gt(10))/*greater then 10*/);
 
 	classWithConnection.PrintUserWithId(11);
 }
