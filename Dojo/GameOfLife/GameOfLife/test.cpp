@@ -8,12 +8,78 @@
 
 class Cell
 {
+private:
+	bool isAlive;
 public:
+	void setCurrentState(bool b)
+	{
+		isAlive = b;
+	}
+
+	bool IsAliveInNextGeneration(int neighbours)
+	{
+		return (isAlive && neighbours == 2) || neighbours == 3;
+	}
 };
 
-TEST(GameOfLifeTests, CanCreate)
+TEST(GameOfLifeTests, ShouldBeDeadFor0Neighbours)
 {
 	Cell c;
-	EXPECT_EQ(1, 1);
-	EXPECT_TRUE(true);
+	bool isAlive = c.IsAliveInNextGeneration(0);
+	EXPECT_FALSE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeDeadFor1Neighbours)
+{
+	Cell c;
+	bool isAlive = c.IsAliveInNextGeneration(1);
+	EXPECT_FALSE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeDeadFor2NeighboursIfPreviouslyWasDead)
+{
+	Cell c;
+	c.setCurrentState(false);
+	bool isAlive = c.IsAliveInNextGeneration(2);
+	EXPECT_FALSE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeAliveFor2NeighboursIfPreviouslyWasAlive)
+{
+	Cell c;
+	c.setCurrentState(true);
+	bool isAlive = c.IsAliveInNextGeneration(2);
+	EXPECT_TRUE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeAliveFor3NeighboursIfPreviouslyWasDead)
+{
+	Cell c;
+	c.setCurrentState(false);
+	bool isAlive = c.IsAliveInNextGeneration(3);
+	EXPECT_TRUE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeAliveFor3NeighboursIfPreviouslyWasAlive)
+{
+	Cell c;
+	c.setCurrentState(true);
+	bool isAlive = c.IsAliveInNextGeneration(3);
+	EXPECT_TRUE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeDeadFor4NeighboursIfPreviouslyWasDead)
+{
+	Cell c;
+	c.setCurrentState(false);
+	bool isAlive = c.IsAliveInNextGeneration(4);
+	EXPECT_FALSE(isAlive);
+}
+
+TEST(GameOfLifeTests, ShouldBeDeadFor4NeighboursIfPreviouslyWasAlive)
+{
+	Cell c;
+	c.setCurrentState(true);
+	bool isAlive = c.IsAliveInNextGeneration(4);
+	EXPECT_FALSE(isAlive);
 }
