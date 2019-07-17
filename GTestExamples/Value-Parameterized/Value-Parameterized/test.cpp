@@ -8,7 +8,7 @@ public:
 		for (int index = 2; index < i; index++)
 			if (i % index == 0)
 				return false;
-		
+
 		return true;
 	}
 };
