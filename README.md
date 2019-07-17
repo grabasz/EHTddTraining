@@ -1,14 +1,5 @@
 # EHTddTraining
 
-* Refactoring example: VideoStore
-
------
-
-* Dojo1: FizzBuzz
-* Dojo2: CodeCracker
-* Dojo3: GameOfLife
-
------
 
 * C++ Gmock examples
      * Mocking 
@@ -25,5 +16,13 @@
        * Number - Greater
        * _
      * Typed tests
-     * Value Parametrized <- not compiling
+     * Value Parametrized
+-----
 
+* Refactoring example: VideoStore
+
+-----
+
+* Dojo1: FizzBuzz
+* Dojo2: CodeCracker
+* Dojo3: GameOfLife
