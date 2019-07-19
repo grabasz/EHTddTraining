@@ -9,11 +9,67 @@
 class Cell
 {
 public:
+	Cell(bool isAlive): cellIsAlive(isAlive)
+	{
+	}
+
+	bool getCellIsAlive()
+	{
+		return cellIsAlive;
+	}
+
+	bool IsAlive(int numberOfNeighbours)
+	{
+		if (!cellIsAlive)
+		{
+			return numberOfNeighbours == 3;
+		}
+
+		return numberOfNeighbours < 4 && numberOfNeighbours > 1;
+	}
+
+private:
+	bool cellIsAlive;
 };
 
-TEST(GameOfLifeTests, CanCreate)
+TEST(GameOfLifeTests, ShouldCellNotBeAliveForOneNeighbour)
 {
-	Cell c;
-	EXPECT_EQ(1, 1);
-	EXPECT_TRUE(true);
+	Cell c(false);
+	auto result = c.IsAlive(1);
+
+EXPECT_FALSE(result);
+}
+
+TEST(GameOfLifeTests, ShouldCellWillBeAliveForTwoNeighbours)
+{
+	Cell c(true);
+	
+	auto result = c.IsAlive(2);
+
+EXPECT_TRUE(result);
+}
+
+TEST(GameOfLifeTests, ShouldCellBeDeadWhenIsAlreadyDeadWithTwoNeighbours)
+{
+	Cell c(false);
+	auto result = c.IsAlive(2);
+
+EXPECT_FALSE(result);
+}
+
+TEST(GameOfLifeTests, ShouldCellBeDeadWhenAlreadyDeadFourNeighbours)
+{
+	Cell c(false);
+	auto result = c.IsAlive(4);
+
+EXPECT_FALSE(result);
+}
+
+
+TEST(GameOfLifeTests, ShouldCellBeDeadWhenAlreadyAliveFourNeighbours)
+{
+	Cell c(true);
+	const auto result = c.IsAlive(4);
+
+EXPECT_FALSE(result);
 }
